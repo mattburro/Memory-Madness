@@ -24,3 +24,6 @@ func load_item_images():
 	for file_name in file_names:
 		if ".import" not in file_name:
 			add_file_to_list(file_name, path)
+
+func get_random_item_image():
+	return item_images.pick_random().item_texture

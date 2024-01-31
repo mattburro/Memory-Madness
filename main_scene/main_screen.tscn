@@ -1,13 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bv65f7dmhqlhy"]
+[gd_scene load_steps=4 format=3 uid="uid://bv65f7dmhqlhy"]
 
-[ext_resource type="FontFile" uid="uid://bahr77kttermy" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="1_86st6"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_b15j3"]
-font = ExtResource("1_86st6")
-font_size = 84
-font_color = Color(0.92549, 0.988235, 0.796078, 1)
-outline_size = 6
-outline_color = Color(0.301961, 0.65098, 0.364706, 1)
+[ext_resource type="LabelSettings" uid="uid://yiudyqiiw3t2" path="res://resources/LG_84_Green.tres" id="1_yyqld"]
+[ext_resource type="PackedScene" uid="uid://btkt8u44jytqk" path="res://front_sprite/front_sprite.tscn" id="2_0y7jo"]
+[ext_resource type="PackedScene" uid="uid://cxj5htd3lqxwe" path="res://level_button/level_button.tscn" id="2_5t6ef"]
 
 [node name="MainScreen" type="Control"]
 layout_mode = 3
@@ -41,7 +36,7 @@ size_flags_vertical = 3
 [node name="Title" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = "MEMORY MADNESS"
-label_settings = SubResource("LabelSettings_b15j3")
+label_settings = ExtResource("1_yyqld")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -52,6 +47,25 @@ size_flags_vertical = 3
 [node name="Levels" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_constants/separation = 12
+
+[node name="LevelButton" parent="VBoxContainer/Levels" instance=ExtResource("2_5t6ef")]
+layout_mode = 2
+
+[node name="LevelButton2" parent="VBoxContainer/Levels" instance=ExtResource("2_5t6ef")]
+layout_mode = 2
+
+[node name="LevelButton3" parent="VBoxContainer/Levels" instance=ExtResource("2_5t6ef")]
+layout_mode = 2
+
+[node name="LevelButton4" parent="VBoxContainer/Levels" instance=ExtResource("2_5t6ef")]
+layout_mode = 2
+
+[node name="LevelButton5" parent="VBoxContainer/Levels" instance=ExtResource("2_5t6ef")]
+layout_mode = 2
+
+[node name="LevelButton6" parent="VBoxContainer/Levels" instance=ExtResource("2_5t6ef")]
+layout_mode = 2
 
 [node name="Spacer3" type="Control" parent="VBoxContainer"]
 layout_mode = 2
@@ -60,6 +74,19 @@ size_flags_vertical = 3
 [node name="Sprites" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_constants/separation = 72
+
+[node name="FrontSprite" parent="VBoxContainer/Sprites" instance=ExtResource("2_0y7jo")]
+layout_mode = 2
+
+[node name="FrontSprite2" parent="VBoxContainer/Sprites" instance=ExtResource("2_0y7jo")]
+layout_mode = 2
+
+[node name="FrontSprite3" parent="VBoxContainer/Sprites" instance=ExtResource("2_0y7jo")]
+layout_mode = 2
+
+[node name="FrontSprite4" parent="VBoxContainer/Sprites" instance=ExtResource("2_0y7jo")]
+layout_mode = 2
 
 [node name="Spacer4" type="Control" parent="VBoxContainer"]
 layout_mode = 2
