@@ -15,3 +15,4 @@ func set_level_number(level_number: int):
 
 func on_pressed():
 	SoundManager.play_button_click(sound)
+	SignalManager.on_level_selected.emit(level_number)
