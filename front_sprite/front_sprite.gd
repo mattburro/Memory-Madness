@@ -9,7 +9,7 @@ func _ready():
 	run_me()
 
 func set_random_image():
-	texture = ImageManager.get_random_item_image()
+	texture = ImageManager.get_random_item_image().item_texture
 
 func get_random_spin_time() -> float:
 	return randf_range(SPIN_TIME_RANGE[0], SPIN_TIME_RANGE[1])
