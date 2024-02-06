@@ -4,6 +4,7 @@ extends Control
 
 @onready var sound = $Sound
 @onready var tile_container = %TileContainer
+@onready var scorer = $Scorer
 
 func _ready():
 	SignalManager.on_level_selected.connect(on_level_selected)
@@ -25,3 +26,5 @@ func on_level_selected(level_num: int):
 	
 	for image_dict in level_selection.image_list:
 		add_memory_tile(image_dict, frame_image)
+	
+	scorer.clear_new_game(level_selection.target_pairs)
