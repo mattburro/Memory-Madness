@@ -21,6 +21,18 @@ func setup(item_image_dict: Dictionary, frame_image: CompressedTexture2D):
 	reveal(false)
 	on_selection_enabled()
 
+func kill_on_success():
+	z_index = 1
+	disabled = true
+	
+	var tween = get_tree().create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(self, "rotation", deg_to_rad(720), 0.5)
+	tween.tween_property(self, "scale", Vector2(1.5, 1.5), 0.5)
+	tween.set_parallel(false)
+	tween.tween_interval(0.6)
+	tween.tween_property(self, "scale", Vector2.ZERO, 0.5)
+
 func get_item_name() -> String:
 	return item_name
 
