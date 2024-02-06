@@ -13,6 +13,7 @@ func _ready():
 	SignalManager.on_tile_selected.connect(on_tile_selected)
 
 func on_tile_selected(tile: MemoryTile):
+	SoundManager.play_tile_click(sound)
 	tile.reveal(true)
 	selections.append(tile)
 	pass
