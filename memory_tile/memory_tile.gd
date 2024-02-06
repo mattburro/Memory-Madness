@@ -1,4 +1,4 @@
-extends TextureButton
+class_name MemoryTile extends TextureButton
 
 @onready var frame_image = $FrameImage
 @onready var item_image = $ItemImage
@@ -19,6 +19,7 @@ func setup(item_image_dict: Dictionary, frame_image: CompressedTexture2D):
 	item_image.texture = item_image_dict.item_texture
 	item_name = item_image_dict.item_name
 	reveal(false)
+	on_selection_enabled()
 
 func get_item_name() -> String:
 	return item_name
@@ -31,4 +32,4 @@ func on_selection_enabled():
 
 func _on_pressed():
 	if selectable:
-		reveal(true)
+		SignalManager.on_tile_selected.emit(self)
