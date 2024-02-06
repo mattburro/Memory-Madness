@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://clvnymglba75m"]
+[gd_scene load_steps=10 format=3 uid="uid://clvnymglba75m"]
 
 [ext_resource type="Script" path="res://game_screen/game_screen.gd" id="1_adngp"]
 [ext_resource type="LabelSettings" uid="uid://b16o7l2dvtpqa" path="res://resources/GM_32_Dark.tres" id="1_b0rvt"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cg304ghra85qr" path="res://assets/ui/green_button00.png" id="4_bpqtq"]
 [ext_resource type="LabelSettings" uid="uid://bdkk8jdhpbrp1" path="res://resources/GM_32_White.tres" id="5_geqia"]
 [ext_resource type="PackedScene" uid="uid://b16krsxfokpy7" path="res://scorer/scorer.tscn" id="8_1gkbq"]
+[ext_resource type="PackedScene" uid="uid://dri6q2eq4sl3a" path="res://game_over_screen/game_over_screen.tscn" id="8_lamua"]
 
 [node name="GameScreen" type="Control"]
 layout_mode = 3
@@ -37,27 +38,28 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
+[node name="UI" type="MarginContainer" parent="HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 theme_override_constants/margin_right = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/UI"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 12
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/UI/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="HBoxContainer/UI/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Moves"
 label_settings = ExtResource("1_b0rvt")
 vertical_alignment = 1
 
-[node name="MovesLabel" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer"]
+[node name="MovesLabel" type="Label" parent="HBoxContainer/UI/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "000"
@@ -65,17 +67,17 @@ label_settings = ExtResource("1_b0rvt")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/UI/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="HBoxContainer/UI/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Pairs"
 label_settings = ExtResource("1_b0rvt")
 vertical_alignment = 1
 
-[node name="PairsLabel" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2"]
+[node name="PairsLabel" type="Label" parent="HBoxContainer/UI/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "0 / 00"
@@ -83,18 +85,18 @@ label_settings = ExtResource("1_b0rvt")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Control" type="Control" parent="HBoxContainer/MarginContainer2/VBoxContainer"]
+[node name="Control" type="Control" parent="HBoxContainer/UI/VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="ExitButton" type="TextureButton" parent="HBoxContainer/MarginContainer2/VBoxContainer"]
+[node name="ExitButton" type="TextureButton" parent="HBoxContainer/UI/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 texture_normal = ExtResource("2_sfcje")
 texture_pressed = ExtResource("3_eus8s")
 texture_hover = ExtResource("4_bpqtq")
 
-[node name="Label" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/ExitButton"]
+[node name="Label" type="Label" parent="HBoxContainer/UI/VBoxContainer/ExitButton"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -106,8 +108,12 @@ label_settings = ExtResource("5_geqia")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="GameOverScreen" parent="." instance=ExtResource("8_lamua")]
+visible = false
+layout_mode = 1
+
 [node name="Sound" type="AudioStreamPlayer" parent="."]
 
 [node name="Scorer" parent="." instance=ExtResource("8_1gkbq")]
 
-[connection signal="pressed" from="HBoxContainer/MarginContainer2/VBoxContainer/ExitButton" to="." method="on_exit_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/UI/VBoxContainer/ExitButton" to="." method="on_exit_button_pressed"]

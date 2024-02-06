@@ -31,7 +31,7 @@ func kill_on_success():
 	tween.tween_property(self, "scale", Vector2(1.5, 1.5), 0.5)
 	tween.set_parallel(false)
 	tween.tween_interval(0.6)
-	tween.tween_property(self, "scale", Vector2.ZERO, 0.5)
+	tween.tween_property(self, "scale", Vector2.ZERO, 0)
 
 func get_item_name() -> String:
 	return item_name

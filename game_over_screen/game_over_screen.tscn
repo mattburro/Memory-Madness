@@ -1,0 +1,113 @@
+[gd_scene load_steps=10 format=3 uid="uid://dri6q2eq4sl3a"]
+
+[ext_resource type="Texture2D" uid="uid://bwwonwcfll15s" path="res://assets/ui/UIbg.png" id="1_h3b4s"]
+[ext_resource type="Script" path="res://game_over_screen/game_over_screen.gd" id="1_mqmsb"]
+[ext_resource type="FontFile" uid="uid://bahr77kttermy" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="2_hhr25"]
+[ext_resource type="LabelSettings" uid="uid://b16o7l2dvtpqa" path="res://resources/GM_32_Dark.tres" id="3_5pujb"]
+[ext_resource type="Texture2D" uid="uid://6r0ppna7todg" path="res://assets/ui/blue_button00.png" id="4_l3inl"]
+[ext_resource type="Texture2D" uid="uid://ob0igwdn416x" path="res://assets/ui/yellow_button00.png" id="5_h6whb"]
+[ext_resource type="LabelSettings" uid="uid://bdkk8jdhpbrp1" path="res://resources/GM_32_White.tres" id="7_bg7du"]
+[ext_resource type="Texture2D" uid="uid://cg304ghra85qr" path="res://assets/ui/green_button00.png" id="7_v6wp5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fokil"]
+font = ExtResource("2_hhr25")
+font_size = 84
+font_color = Color(0.0823529, 0.988235, 0.796078, 1)
+outline_size = 6
+outline_color = Color(0.301961, 0.231373, 0.921569, 1)
+
+[node name="GameOverScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mqmsb")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -192.0
+offset_right = 256.0
+offset_bottom = 192.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(256, 192)
+texture = ExtResource("1_h3b4s")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "YOU WIN!"
+label_settings = SubResource("LabelSettings_fokil")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Moves taken:"
+label_settings = ExtResource("3_5pujb")
+vertical_alignment = 1
+
+[node name="MovesLabel" type="Label" parent="NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0000"
+label_settings = ExtResource("3_5pujb")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="NinePatchRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="ExitButton" type="TextureButton" parent="NinePatchRect/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("4_l3inl")
+texture_pressed = ExtResource("5_h6whb")
+texture_hover = ExtResource("7_v6wp5")
+
+[node name="Label" type="Label" parent="NinePatchRect/MarginContainer/VBoxContainer/ExitButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Exit"
+label_settings = ExtResource("7_bg7du")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="NinePatchRect/MarginContainer/VBoxContainer/ExitButton" to="." method="on_exit_button_pressed"]

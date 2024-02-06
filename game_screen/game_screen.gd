@@ -4,12 +4,14 @@ extends Control
 
 @onready var sound = $Sound
 @onready var tile_container = %TileContainer
+@onready var ui = %UI
 @onready var scorer: Scorer = $Scorer
 @onready var moves_label = %MovesLabel
 @onready var pairs_label = %PairsLabel
 
 func _ready():
 	SignalManager.on_level_selected.connect(on_level_selected)
+	SignalManager.on_game_over.connect(on_game_over)
 
 func _process(_delta):
 	moves_label.text = scorer.get_moves_made_str()
@@ -34,3 +36,7 @@ func on_level_selected(level_num: int):
 		add_memory_tile(image_dict, frame_image)
 	
 	scorer.clear_new_game(level_selection.target_pairs)
+	ui.show()
+
+func on_game_over(moves: int):
+	ui.hide()
